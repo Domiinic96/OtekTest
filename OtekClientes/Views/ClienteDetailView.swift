@@ -53,6 +53,8 @@ struct ClienteDetailView: View {
                             Label(direccion.calle, systemImage: "mappin.and.ellipse")
                                 .font(.headline)
                             
+                            Label("Sector \(direccion.sector)", systemImage: "map.fill")
+                            
                             Label("Casa \(direccion.numeroCasa)", systemImage: "house")
                             
                             Label(direccion.ciudad, systemImage: "building.2")
@@ -87,5 +89,5 @@ struct ClienteDetailView: View {
 
 
 #Preview {
-    ClienteDetailView(clienteDetail: .init(nombre: "Luis", apellido: "Santana", telefono: "8296489596", direcciones: [Direccion(calle: "1era", ciudad: "Santo Domingo", numeroCasa: "1"), Direccion(calle: "jual ibarra", ciudad: "Santo Domingo", numeroCasa: "1")]), showHeader: true)
+    ClienteDetailView(clienteDetail: .init(nombre: "Luis", apellido: "Santana", telefono: "8296489596", direcciones: [Direccion(calle: "1era",sector: "Jacobo", ciudad: "Santo Domingo", numeroCasa: "1"), Direccion(calle: "jual ibarra", sector: "test",ciudad: "Santo Domingo", numeroCasa: "1")]), showHeader: true)
 }

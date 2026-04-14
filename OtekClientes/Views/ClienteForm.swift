@@ -20,6 +20,7 @@ struct ClienteForm: View {
         direcciones: []
     )
     @State private var calle = ""
+    @State private var sector = ""
     @State private var ciudad = ""
     @State private var numeroCasa = ""
     @State private var showDireccionSheet = false
@@ -124,6 +125,9 @@ struct ClienteForm: View {
                         CustomTextField(icon: "mappin", placeholder: OtekConstants.calle, text: $calle)
                             .focused($direccionesFocused, equals: .calle)
                         
+                        CustomTextField(icon: "map.fill", placeholder: OtekConstants.sector, text: $sector)
+                            .focused($direccionesFocused, equals: .sector)
+                        
                         CustomTextField(icon: "building.2", placeholder: OtekConstants.ciudad, text: $ciudad)
                             .focused($direccionesFocused, equals: .ciudad)
                         
@@ -165,6 +169,7 @@ struct ClienteForm: View {
     private func agregarDireccion() {
         let direccion = Direccion(
             calle: calle,
+            sector: sector,
             ciudad: ciudad,
             numeroCasa: numeroCasa
         )

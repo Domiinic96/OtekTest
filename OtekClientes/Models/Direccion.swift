@@ -9,14 +9,16 @@ import Foundation
 
 
 struct Direccion: Codable, Hashable {
-    var id: UUID
-    var calle: String
-    var ciudad: String
-    var numeroCasa: String
+    let id: UUID
+    let calle: String
+    let sector: String
+    let ciudad: String
+    let numeroCasa: String
     
-    init(id: UUID = UUID(), calle: String, ciudad: String, departamento: String? = nil, numeroCasa: String) {
+    init(id: UUID = UUID(), calle: String, sector: String, ciudad: String, departamento: String? = nil, numeroCasa: String) {
         self.id = id
         self.calle = calle
+        self.sector = sector
         self.ciudad = ciudad
         self.numeroCasa = numeroCasa
     }

@@ -13,6 +13,7 @@ enum ClienteFields: Hashable {
 
 enum DreccionesFields: Hashable {
     case calle
+    case sector
     case ciudad
     case numeroCasa
 }

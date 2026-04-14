@@ -24,6 +24,7 @@ class OtekConstants {
     static let guardar = "Guardar Cliente"
     static let nuevoCliente = "Nuevo Cliente"
     static let calle = "Calle"
+    static let sector = "Sector"
     static let ciudad = "Ciudad"
     static let numeroCasa = "Número de casa / Apto"
     static let nuevaDireccion = "Nueva Dirección"
