@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct ClienteForm: View {
-    
+    @FocusState var clienteFocused: ClienteFields?
+    @FocusState var direccionesFocused: DreccionesFields?
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: ClienteViewModel
     @State private var clienteDraft = Cliente(
@@ -32,10 +33,13 @@ struct ClienteForm: View {
                 VStack(spacing: 12) {
                     
                     CustomTextField(icon: "person",  placeholder: OtekConstants.nombre, text: $clienteDraft.nombre)
+                        .focused($clienteFocused, equals: .nombre)
                     
                     CustomTextField(icon: "person.text.rectangle", placeholder: OtekConstants.apellido, text: $clienteDraft.apellido)
+                        .focused($clienteFocused, equals: .apellido)
                     
                     CustomTextField(icon: "phone", placeholder: OtekConstants.telefono, text: $clienteDraft.telefono)
+                        .focused($clienteFocused, equals: .telefono)
                         .keyboardType(.numberPad)
                 }
                 .padding()
@@ -72,8 +76,16 @@ struct ClienteForm: View {
                 Spacer()
                 
                 Button {
-                    viewModel.saveCliente(clienteDraft)
-                    dismiss()
+                    
+                    if self.clienteDraft.nombre.isEmpty || self.clienteDraft.apellido.isEmpty || self.clienteDraft.telefono.isEmpty ||
+                        self.clienteDraft.direcciones.isEmpty {
+                        viewModel.showBanner(message: OtekConstants.completarCampos, success: false)
+                        
+                    }else{
+                        
+                        viewModel.saveCliente(clienteDraft)
+                        dismiss()
+                    }
                 } label: {
                     Text(clienteDraft.direcciones.isEmpty ? OtekConstants.agregarParaContinuar : OtekConstants.guardar)
                         .frame(maxWidth: .infinity)
@@ -82,7 +94,6 @@ struct ClienteForm: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-                .disabled(clienteDraft.nombre.isEmpty || clienteDraft.apellido.isEmpty || clienteDraft.direcciones.isEmpty)
             }
             .padding()
             .navigationTitle(OtekConstants.nuevoCliente)
@@ -98,6 +109,11 @@ struct ClienteForm: View {
                 
                 
             }
+            .onTapGesture {
+                
+                self.clienteFocused = nil
+                
+            }
             
             .sheet(isPresented: $showDireccionSheet) {
                 
@@ -106,10 +122,13 @@ struct ClienteForm: View {
                     VStack(spacing: 16) {
                         
                         CustomTextField(icon: "mappin", placeholder: OtekConstants.calle, text: $calle)
+                            .focused($direccionesFocused, equals: .calle)
                         
                         CustomTextField(icon: "building.2", placeholder: OtekConstants.ciudad, text: $ciudad)
+                            .focused($direccionesFocused, equals: .ciudad)
                         
                         CustomTextField(icon: "house", placeholder: OtekConstants.numeroCasa, text: $numeroCasa)
+                            .focused($direccionesFocused, equals: .numeroCasa)
                         
                         Spacer()
                     }
@@ -136,6 +155,8 @@ struct ClienteForm: View {
                             .disabled(calle.isEmpty || ciudad.isEmpty || numeroCasa.isEmpty)
                         }
                     }
+                }.onTapGesture {
+                    self.direccionesFocused = nil
                 }
             }
         }

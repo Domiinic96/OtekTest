@@ -32,5 +32,6 @@ class OtekConstants {
     static let agregarDirecciones = "Agregar direcciones"
     static let noClientes = "No hay clientes registrados"
     static let deleteAll = "Eliminar todo"
+    static let completarCampos = "Debes completar todos los campos"
     
 }

@@ -65,7 +65,7 @@ class ClienteViewModel: ObservableObject {
         
     }
     
-    private func showBanner(message: String, success: Bool) {
+    func showBanner(message: String, success: Bool) {
         bannerMessage = message
         isSuccess = success
         showBanner = true
