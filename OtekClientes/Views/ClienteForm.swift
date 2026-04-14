@@ -179,6 +179,7 @@ struct ClienteForm: View {
     
     private func clearDireccion() {
         calle = ""
+        sector = ""
         ciudad = ""
         numeroCasa = ""
     }
