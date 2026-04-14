@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Storage{
     
     private let defaults = UserDefaults.standard
@@ -51,7 +52,6 @@ struct Storage{
     func deleteDireccion(cliente: Cliente, id: UUID) -> [Cliente] {
         
         let singleCliente = getClientes().first(where: { $0.id == cliente.id })
-        
         if var cliente = singleCliente {
             cliente.direcciones.removeAll(where: { $0.id == id})
             return updateCliente(cliente)

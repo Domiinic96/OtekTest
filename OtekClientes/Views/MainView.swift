@@ -20,7 +20,7 @@ struct MainView: View {
                             Button(role: .destructive) {
                                 
                                 withAnimation {
-                                    let _ = viewModel.deleteCliente(cliente)
+                                     _ = viewModel.deleteCliente(cliente)
                                 }
                                 
                             } label: {
@@ -47,7 +47,7 @@ struct MainView: View {
                     ToolbarItem(placement: .topBarLeading) {
                         Button {
                             withAnimation {
-                                let _ =  viewModel.deleteAll()
+                                 _ =  viewModel.deleteAll()
                             }
                             
                         } label: {
