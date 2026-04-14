@@ -25,7 +25,7 @@ class OtekConstants {
     static let nuevoCliente = "Nuevo Cliente"
     static let calle = "Calle"
     static let ciudad = "Ciudad"
-    static let numeroCasa = "Número de casa"
+    static let numeroCasa = "Número de casa / Apto"
     static let nuevaDireccion = "Nueva Dirección"
     static let cancelar = "Cancelar"
     static let agregar = "Agregar"
