@@ -6,7 +6,7 @@ struct MainView: View {
         NavigationStack {
             List {
                 if viewModel.clientes.isEmpty {
-                    Text("No hay clientes registrados")
+                    Text(OtekConstants.noClientes)
                 } else {
                     ForEach(viewModel.clientes) { cliente in
                         NavigationLink(
@@ -24,7 +24,7 @@ struct MainView: View {
                                 }
                                 
                             } label: {
-                                Label("Eliminar", systemImage: "trash")
+                                Label(OtekConstants.eliminar, systemImage: "trash")
                             }
                             
                         }
@@ -32,11 +32,11 @@ struct MainView: View {
                         
                     }                }
             }
-            .navigationTitle("Clientes")
+            .navigationTitle(OtekConstants.cliente)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink("Agregar") {
+                    NavigationLink(OtekConstants.agregar) {
                         ClienteForm()
                     }
                 }
@@ -51,7 +51,7 @@ struct MainView: View {
                             }
                             
                         } label: {
-                            Label("Eliminar todo", systemImage: "trash")
+                            Label(OtekConstants.deleteAll, systemImage: "trash")
                             
                         }.tint(.red)
                         

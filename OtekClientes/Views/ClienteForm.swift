@@ -31,11 +31,11 @@ struct ClienteForm: View {
                 
                 VStack(spacing: 12) {
                     
-                    CustomTextField(icon: "person", placeholder: "Nombre", text: $clienteDraft.nombre)
+                    CustomTextField(icon: "person",  placeholder: OtekConstants.nombre, text: $clienteDraft.nombre)
                     
-                    CustomTextField(icon: "person.text.rectangle", placeholder: "Apellido", text: $clienteDraft.apellido)
+                    CustomTextField(icon: "person.text.rectangle", placeholder: OtekConstants.apellido, text: $clienteDraft.apellido)
                     
-                    CustomTextField(icon: "phone", placeholder: "Teléfono", text: $clienteDraft.telefono)
+                    CustomTextField(icon: "phone", placeholder: OtekConstants.telefono, text: $clienteDraft.telefono)
                         .keyboardType(.numberPad)
                 }
                 .padding()
@@ -43,10 +43,10 @@ struct ClienteForm: View {
                 .cornerRadius(12)
                 
                 List {
-                    Section("Direcciones") {
+                    Section(OtekConstants.direcciones) {
                         
                         if clienteDraft.direcciones.isEmpty {
-                            Text("No hay direcciones")
+                            Text(OtekConstants.sinDirecciones)
                                 .foregroundColor(.secondary)
                         } else {
                             
@@ -75,7 +75,7 @@ struct ClienteForm: View {
                     viewModel.saveCliente(clienteDraft)
                     dismiss()
                 } label: {
-                    Text(clienteDraft.direcciones.isEmpty ? "Agrega direcciones para continuar en +" : "Guardar Cliente")
+                    Text(clienteDraft.direcciones.isEmpty ? OtekConstants.agregarParaContinuar : OtekConstants.guardar)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
@@ -85,7 +85,7 @@ struct ClienteForm: View {
                 .disabled(clienteDraft.nombre.isEmpty || clienteDraft.apellido.isEmpty || clienteDraft.direcciones.isEmpty)
             }
             .padding()
-            .navigationTitle("Nuevo Cliente")
+            .navigationTitle(OtekConstants.nuevoCliente)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -105,29 +105,29 @@ struct ClienteForm: View {
                     
                     VStack(spacing: 16) {
                         
-                        CustomTextField(icon: "mappin", placeholder: "Calle", text: $calle)
+                        CustomTextField(icon: "mappin", placeholder: OtekConstants.calle, text: $calle)
                         
-                        CustomTextField(icon: "building.2", placeholder: "Ciudad", text: $ciudad)
+                        CustomTextField(icon: "building.2", placeholder: OtekConstants.ciudad, text: $ciudad)
                         
-                        CustomTextField(icon: "house", placeholder: "Número casa", text: $numeroCasa)
+                        CustomTextField(icon: "house", placeholder: OtekConstants.numeroCasa, text: $numeroCasa)
                         
                         Spacer()
                     }
                     .padding()
-                    .navigationTitle("Nueva Dirección")
+                    .navigationTitle(OtekConstants.nuevaDireccion)
                     .navigationBarTitleDisplayMode(.inline)
                     
                     .toolbar {
                         
                         ToolbarItem(placement: .topBarLeading) {
-                            Button("Cancelar") {
+                            Button(OtekConstants.cancelar) {
                                 clearDireccion()
                                 showDireccionSheet = false
                             }
                         }
                         
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button("Agregar") {
+                            Button(OtekConstants.agregar) {
                                 agregarDireccion()
                                 clearDireccion()
                                 showDireccionSheet = false

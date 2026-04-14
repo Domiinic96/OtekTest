@@ -40,10 +40,10 @@ struct ClienteDetailView: View {
             }
             
             
-            Section(header: Text("Direcciones")) {
+            Section(header: Text(OtekConstants.direcciones)) {
                 
                 if clienteDetail.direcciones.isEmpty {
-                    Text("No hay direcciones registradas")
+                    Text(OtekConstants.sinDirecciones)
                         .foregroundColor(.secondary)
                 } else {
                     ForEach(clienteDetail.direcciones, id: \.self) { direccion in
@@ -73,14 +73,14 @@ struct ClienteDetailView: View {
                                 }
                                 
                             } label: {
-                                Label("Eliminar", systemImage: "trash")
+                                Label(OtekConstants.eliminar, systemImage: "trash")
                             }
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Cliente")
+        .navigationTitle(OtekConstants.cliente)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
