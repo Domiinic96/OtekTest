@@ -69,7 +69,7 @@ struct ClienteDetailView: View {
                             Button(role: .destructive) {
                                 
                                 withAnimation {
-                                    _ = viewModel.deleteDireccion(cliente: clienteDetail, id: direccion.id)
+                                    viewModel.deleteDireccion(cliente: clienteDetail, id: direccion.id)
                                 }
                                 
                             } label: {

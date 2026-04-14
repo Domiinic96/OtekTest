@@ -20,7 +20,7 @@ struct MainView: View {
                             Button(role: .destructive) {
                                 
                                 withAnimation {
-                                     _ = viewModel.deleteCliente(cliente)
+                                      viewModel.deleteCliente(cliente)
                                 }
                                 
                             } label: {
@@ -47,7 +47,7 @@ struct MainView: View {
                     ToolbarItem(placement: .topBarLeading) {
                         Button {
                             withAnimation {
-                                 _ =  viewModel.deleteAll()
+                                 viewModel.deleteAll()
                             }
                             
                         } label: {
@@ -60,7 +60,18 @@ struct MainView: View {
                 
             }
             
+        }.safeAreaInset(edge: .top) {
+            if viewModel.showBanner {
+                TopBannerView(
+                    message: viewModel.bannerMessage,
+                    isSuccess: viewModel.isSuccess
+                )
+                .transition(.move(edge: .top).combined(with: .opacity))
+                .padding(.horizontal)
+                .padding(.top, 8)
+            }
         }
+        .animation(.easeInOut, value: viewModel.showBanner)
     }
 }
 

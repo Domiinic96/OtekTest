@@ -41,6 +41,7 @@ struct ClienteForm: View {
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(12)
+                
                 List {
                     Section("Direcciones") {
                         
@@ -71,7 +72,7 @@ struct ClienteForm: View {
                 Spacer()
                 
                 Button {
-                    let _ =  viewModel.saveCliente(clienteDraft)
+                    viewModel.saveCliente(clienteDraft)
                     dismiss()
                 } label: {
                     Text(clienteDraft.direcciones.isEmpty ? "Agrega direcciones para continuar en +" : "Guardar Cliente")
