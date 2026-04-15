@@ -16,7 +16,7 @@ final class ClienteViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         viewModel = ClienteViewModel()
-        _ = viewModel.deleteAll()
+        viewModel.deleteAll()
     }
     
     override func tearDown() {
@@ -35,9 +35,8 @@ final class ClienteViewModelTests: XCTestCase {
             direcciones: []
         )
         
-        let result = viewModel.saveCliente(cliente)
+        viewModel.saveCliente(cliente)
         
-        XCTAssertTrue(result)
         XCTAssertEqual(viewModel.clientes.count, 1)
     }
     
@@ -52,11 +51,11 @@ final class ClienteViewModelTests: XCTestCase {
             direcciones: []
         )
         
-        _ = viewModel.saveCliente(cliente)
+        viewModel.saveCliente(cliente)
         
-        let result = viewModel.deleteCliente(cliente)
+       viewModel.deleteCliente(cliente)
         
-        XCTAssertTrue(result)
+       
         XCTAssertTrue(viewModel.clientes.contains(where: { $0.id == cliente.id }) == false)
     }
     
@@ -67,12 +66,11 @@ final class ClienteViewModelTests: XCTestCase {
         let cliente1 = Cliente(nombre: "A", apellido: "B", telefono: "1", direcciones: [])
         let cliente2 = Cliente(nombre: "C", apellido: "D", telefono: "2", direcciones: [])
         
-        _ = viewModel.saveCliente(cliente1)
-        _ = viewModel.saveCliente(cliente2)
+        viewModel.saveCliente(cliente1)
+        viewModel.saveCliente(cliente2)
         
-        let result = viewModel.deleteAll()
+        viewModel.deleteAll()
         
-        XCTAssertTrue(result)
         XCTAssertEqual(viewModel.clientes.count, 0)
     }
     
@@ -80,7 +78,7 @@ final class ClienteViewModelTests: XCTestCase {
     
     func test_deleteDireccion_shouldRemoveAddress() {
         
-        let direccion = Direccion(calle: "1", ciudad: "SD", numeroCasa: "10")
+        let direccion = Direccion(calle: "1",sector: "pedro juan" ,ciudad: "SD", numeroCasa: "10")
         
         let cliente = Cliente(
             nombre: "Luis",
@@ -89,15 +87,15 @@ final class ClienteViewModelTests: XCTestCase {
             direcciones: [direccion]
         )
         
-        _ = viewModel.saveCliente(cliente)
+        viewModel.saveCliente(cliente)
         
         guard let saved = viewModel.clientes.first else {
             XCTFail("Cliente no guardado")
             return
         }
         
-        let result = viewModel.deleteDireccion(cliente: saved, id: direccion.id)
+        viewModel.deleteDireccion(cliente: saved, id: direccion.id)
         
-        XCTAssertTrue(result)
+        XCTAssertTrue(viewModel.clientes.first?.direcciones.count    == 0)
     }
 }
